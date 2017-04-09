@@ -16,7 +16,3 @@ Produces data on currency and its conversion
 1. [Technical Task](docs/technical_task.md)
 1. [Useful links](docs/useful_links.md)
 1. [FAQ](docs/faq.md)
-
-
-Собираем образ локально
-docker build -t currency-exchanger-demo . 
