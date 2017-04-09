@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.avcherkasov.currency-exchanger-demo</groupId>
+        <artifactId>currency-exchanger-demo</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>io.github.avcherkasov</groupId>
+    <artifactId>proxy-nbrb</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Proxy Nbrb</name>
+    <description>Proxy to interact with a currency provider with The National Bank of the Republic of Belarus (NBRB)</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-boot-admin.version>1.4.6</spring-boot-admin.version>
+        <protocol.version>1.0.0</protocol.version>
+        <lombok.version>1.16.14</lombok.version>
+        <jaxws.version>2.2.5</jaxws.version>
+        <jaxws-maven-plugin.version>2.4.1</jaxws-maven-plugin.version>
+    </properties>
+
+    <dependencies>
+        <!--Spring libs-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--Self libs-->
+        <dependency>
+            <groupId>io.github.avcherkasov.currency-exchanger-demo</groupId>
+            <artifactId>protocol</artifactId>
+            <version>${protocol.version}</version>
+            <!--<classifier>v1</classifier>-->
+        </dependency>
+        <!--Spring boot admin libs-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${spring-boot-admin.version}</version>
+        </dependency>
+        <!--Third party libs-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JAXWS - create soap object -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>${jaxws.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-tools</artifactId>
+            <version>${jaxws.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <targetPath>${project.build.directory}</targetPath>
+                <includes>
+                    <include>Dockerfile</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>${jaxws-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>nbrb</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                                <vmArg>-Djavax.xml.accessExternalDTD=all</vmArg>
+                            </vmArgs>
+                            <extension>true</extension>
+                            <verbose>true</verbose>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <packageName>by.nbrb</packageName>
+                            <bindingFiles>
+                                <bindingFile>${project.basedir}/src/main/resources/META-INF/wsdl/bindings/XMLSchema.xsd</bindingFile>
+                                <bindingFile>${project.basedir}/src/main/resources/META-INF/wsdl/bindings/customization.xjb</bindingFile>
+                            </bindingFiles>
+                            <wsdlDirectory>${project.basedir}/src/main/resources/META-INF/wsdl</wsdlDirectory>
+                            <wsdlLocation>META-INF/wsdl/ExRates.wsdl</wsdlLocation>
+                            <keep>true</keep>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <xdisableSSLHostnameVerification>true</xdisableSSLHostnameVerification>
+                            <staleFile>${project.build.directory}/jaxws/stale/nbrb.stale</staleFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

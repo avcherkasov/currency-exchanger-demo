@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: @name@
+    description: @description@
+---
+info:
+  version: @version@
+  responsible: Anatoly Cherkasov
+  stage: dev
+---
+endpoints:
+  sensitive: false
+---
+server:
+  port: 8102
+---
+logging:
+  config: classpath:logback.xml
+  file: /var/log/@artifactId@/@artifactId@.log
+---
+nbrb:
+  url: http://www.nbrb.by/API/ExRates
+  fields:
+    required:
+---
+spring:
+  boot:
+    admin:
+      url: http://127.0.0.1:8300
