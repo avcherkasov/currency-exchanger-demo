@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: @name@
+    description: @description@
+---
+info:
+  version: @version@
+  responsible: Anatoly Cherkasov
+  stage: dev
+---
+server:
+  port: 8300
+---
+logging:
+  config: classpath:logback.xml
+  file: /var/log/@artifactId@/@artifactId@.log
+---
+security:
+  user:
+    name: admin
+    password: admin
+    role: ADMIN

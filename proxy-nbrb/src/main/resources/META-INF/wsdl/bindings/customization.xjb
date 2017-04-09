@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb"
+          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+          version="2.0">
+
+    <globalBindings>
+        <xjc:simple />
+    </globalBindings>
+
+    <bindings scd="~xsd:complexType">
+        <class name="ComplexTypeType"/>
+    </bindings>
+
+    <bindings scd="~xsd:simpleType">
+        <class name="SimpleTypeType"/>
+    </bindings>
+
+    <bindings scd="~xsd:group">
+        <class name="GroupType"/>
+    </bindings>
+
+    <bindings scd="~xsd:attributeGroup">
+        <class name="AttributeGroupType"/>
+    </bindings>
+
+    <bindings scd="~xsd:element">
+        <class name="ElementType"/>
+    </bindings>
+
+    <bindings scd="~xsd:attribute">
+        <class name="attributeType"/>
+    </bindings>
+</bindings>

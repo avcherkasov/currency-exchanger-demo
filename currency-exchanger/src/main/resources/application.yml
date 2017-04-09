@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: @name@
+    description: @description@
+---
+info:
+  version: @version@
+  responsible: Anatoly Cherkasov
+  stage: dev
+---
+endpoints:
+  sensitive: false
+---
+server:
+  port: 8090
+---
+logging:
+  config: classpath:logback.xml
+  file: /var/log/@artifactId@/@artifactId@.log
+---
+spring:
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://127.0.0.1:5432/test_currency
+        username: test
+        password: test
+        hikari:
+            maximum-pool-size: 3
+            idle-timeout: 30000
+---
+flyway:
+    validate-on-migrate: true
+---
+cron:
+    expression: 100000
+---
+spring:
+  boot:
+    admin:
+      url: http://127.0.0.1:8300
