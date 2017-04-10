@@ -16,6 +16,9 @@ The query is the structure of [Context] [1] on the URL `http(s)://{host}:{port}/
 
 The answer must come in the structure [ProxyResult] [2]
 
+---
+[Change log](CHANGELOG.md)
+
 
 [1]: ../protocol/src/main/java/io/github/avcherkasov/protocol/model/Context.java
 [2]: ../protocol/src/main/java/io/github/avcherkasov/protocol/model/ProxyResult.java

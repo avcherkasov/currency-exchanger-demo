@@ -35,9 +35,29 @@ import java.util.stream.Collectors;
  * @see ProxyResult
  */
 @Component
-public class NbrbSoapHandler implements Proxy {
+public class NbrbSoapHandler implements Proxy, NbrbHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NbrbSoapHandler.class);
+
+    // ------------------------------------------------------------------------
+    // Overridden interface methods
+    // ------------------------------------------------------------------------
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean filter(String format) {
+        return "soap".equalsIgnoreCase(format);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProxyResult accept(Context context) {
+        return processed(context);
+    }
 
     /**
      * When debugging, use the date:
