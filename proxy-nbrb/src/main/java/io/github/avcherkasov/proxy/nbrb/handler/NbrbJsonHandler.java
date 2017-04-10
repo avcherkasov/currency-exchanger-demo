@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
  * @see ProxyResult
  */
 @Component
-public class NbrbJsonHandler implements Proxy {
+public class NbrbJsonHandler implements Proxy, NbrbHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NbrbJsonHandler.class);
 
@@ -51,6 +51,26 @@ public class NbrbJsonHandler implements Proxy {
 
     /** List of {@link Currencies} */
     private List<Currencies> currencyCodes = Collections.emptyList();
+
+    // ------------------------------------------------------------------------
+    // Overridden interface methods
+    // ------------------------------------------------------------------------
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean filter(String format) {
+        return "json".equalsIgnoreCase(format);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProxyResult accept(Context context) {
+        return processed(context);
+    }
 
     /**
      * {@inheritDoc}

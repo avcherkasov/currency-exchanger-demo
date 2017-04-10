@@ -61,7 +61,6 @@ Demonstration of currency exchanger
 ### What else can be improved
 
 - Add caching
-- To improve the work with handlers
 - Think over the protocol of interaction more carefully
 - Implement a helper library to work with the date on proxy, so as not to duplicate
 - Receiving a currency on a schedule based on the configuration in the database
