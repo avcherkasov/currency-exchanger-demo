@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 @Component
 public class NbrbJsonHandler implements Proxy, NbrbHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(NbrbHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NbrbJsonHandler.class);
 
     @Value("${nbrb.url}")
     private String url;

@@ -16,7 +16,6 @@ import java.util.List;
  *
  * @author Anatoly Cherkasov
  * @see io.github.avcherkasov.proxy.nbrb.handler.NbrbHandler
- * @see io.github.avcherkasov.proxy.nbrb.handler.NbrbSoapHandler
  * @see ProxyResult
  */
 @RestController
