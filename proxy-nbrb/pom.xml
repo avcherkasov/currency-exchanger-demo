@@ -7,13 +7,13 @@
     <parent>
         <groupId>io.github.avcherkasov.currency-exchanger-demo</groupId>
         <artifactId>currency-exchanger-demo</artifactId>
-        <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>1.0.1</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <groupId>io.github.avcherkasov</groupId>
     <artifactId>proxy-nbrb</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>Proxy Nbrb</name>

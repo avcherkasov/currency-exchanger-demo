@@ -36,7 +36,7 @@ public class CbrController {
      * @return ProxyResult {@link ProxyResult ProxyResult}
      */
     @RequestMapping(value = "currency_rates", method = RequestMethod.POST)
-    public ProxyResult currencyRates(@RequestBody Context context) {
+    public synchronized ProxyResult currencyRates(@RequestBody Context context) {
         return handler.processed(context);
     }
 

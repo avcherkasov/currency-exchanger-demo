@@ -7,8 +7,8 @@
     <parent>
         <groupId>io.github.avcherkasov.currency-exchanger-demo</groupId>
         <artifactId>currency-exchanger-demo</artifactId>
-        <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>1.0.1</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <artifactId>currency-exchanger</artifactId>

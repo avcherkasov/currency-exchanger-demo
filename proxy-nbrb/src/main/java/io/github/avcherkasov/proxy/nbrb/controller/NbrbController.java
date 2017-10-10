@@ -43,7 +43,7 @@ public class NbrbController {
      * @return ProxyResult {@link ProxyResult ProxyResult}
      */
     @RequestMapping(value = "{format}", method = RequestMethod.POST)
-    public ProxyResult currencyRates(
+    public synchronized ProxyResult currencyRates(
             @PathVariable("format") String format,
             @RequestBody Context context
     ) {
